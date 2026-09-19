@@ -1,0 +1,37 @@
+{
+  "name": "opencode-compact-instructions",
+  "version": "0.1.0",
+  "description": "OpenCode plugin: customize /compact with per-invocation instructions, e.g. /compact keep only necessary information",
+  "type": "module",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "engines": {
+    "opencode": "^1.0.0"
+  },
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "compaction",
+    "compact",
+    "summarize"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cesumilo/opencode-compact-instructions"
+  },
+  "license": "MIT",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@opencode-ai/plugin": "^1.4.11",
+    "typescript": "^5.6.0"
+  }
+}
