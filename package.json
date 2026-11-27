@@ -1,6 +1,6 @@
 {
   "name": "opencode-compact-instructions",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "OpenCode plugin: customize /compact with per-invocation instructions, e.g. /compact keep only necessary information",
   "type": "module",
   "main": "src/index.ts",
@@ -8,7 +8,7 @@
     ".": "./src/index.ts"
   },
   "engines": {
-    "opencode": "^1.0.0"
+    "opencode": "^2.0.0"
   },
   "keywords": [
     "opencode",
@@ -30,8 +30,10 @@
   "scripts": {
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "@opencode/plugin": "^2.4.2"
+  },
   "devDependencies": {
-    "@opencode-ai/plugin": "^1.4.11",
     "typescript": "^7.0.2"
   }
 }

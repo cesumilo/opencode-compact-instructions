@@ -6,21 +6,20 @@ Customize OpenCode's `/compact` with per-invocation instructions.
 /compact keep only necessary information
 ```
 
-Normally `/compact` (alias `/summarize`) accepts no arguments and summarizes the
-session with a fixed prompt. This plugin lets you steer the summary every time
-you compact.
+Normally `/compact` summarizes the session with a fixed prompt. This plugin lets
+you steer the summary every time you compact.
 
 ## Install
 
-Add it to your OpenCode config (`~/.config/opencode/opencode.json` or a project
-`opencode.json`).
+Add it to your OpenCode V2 config (`~/.config/opencode/opencode.json` or a
+project `opencode.json`).
 
 From GitHub:
 
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["github:cesumilo/opencode-compact-instructions"]
+  "plugins": ["github:cesumilo/opencode-compact-instructions"]
 }
 ```
 
@@ -29,11 +28,11 @@ From npm (if published):
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["opencode-compact-instructions"]
+  "plugins": ["opencode-compact-instructions"]
 }
 ```
 
-Restart OpenCode after changing the config.
+OpenCode reloads plugin configuration automatically.
 
 ## Usage
 
@@ -45,18 +44,17 @@ Restart OpenCode after changing the config.
 
 What happens:
 
-1. The plugin registers a `compact` command that overrides the built-in one so
-   it accepts arguments.
-2. Running it triggers the real compaction (`session.summarize`).
-3. Your instructions are appended to the compaction prompt.
+1. The plugin registers a `compact` command that accepts arguments.
+2. Running it requests compaction through `session.compact`.
+3. The `compaction` session hook appends your instructions to the prompt used
+   for the next compaction.
 
 ## Notes
 
-- The model used for compaction is taken from the session's most recent message.
-- OpenCode's command pipeline always sends a prompt after the command hook, so a
-  hidden synthetic turn acknowledges the compaction
-  ("Session compacted — ready to continue.").
-- If you already define your own `compact` command, this plugin leaves it alone.
+- The plugin leaves an existing user-defined `compact` command alone.
+- Compaction uses the `agents.compaction.model` setting when configured, and
+  otherwise the session's model.
+- Instructions apply to the next compaction only.
 
 ## Development
 
